@@ -3,12 +3,22 @@
  */
 package ehu.isad;
 
+import ehu.isad.controllers.ui.TaulaKud;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Main extends Application {
 
+    private Parent taulaUI;
+
     private Stage stage;
+
+    private TaulaKud taulaKud;
 
     public static void main(String[] args) {
         launch();
@@ -18,7 +28,20 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
         stage.setResizable(false);
+        this.taulaErakutsi();
+        stage.setTitle("Azterketa");
+    }
+
+    private void taulaErakutsi() throws Exception {
+        this.taulaPantailaKargatu();
+        stage.setScene(new Scene(taulaUI, 600, 400));
         stage.show();
-        stage.setTitle("Eurobisioa");
+    }
+
+    private void taulaPantailaKargatu() throws IOException {
+        FXMLLoader loaderTaula = new FXMLLoader(getClass().getResource("/Taula.fxml"));
+        taulaUI = (Parent) loaderTaula.load();
+        taulaKud = loaderTaula.getController();
+        taulaKud.setMainApp(this);
     }
 }

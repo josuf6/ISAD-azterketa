@@ -22,6 +22,11 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:29.0-jre'
+
+    compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.28.0'
+
+    // https://mvnrepository.com/artifact/commons-codec/commons-codec
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.9'
 }
 
 application {
